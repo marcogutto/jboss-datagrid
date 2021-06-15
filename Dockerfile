@@ -3,6 +3,13 @@ FROM registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7
 ENV JBOSS_HOME /opt/eap
 ENV DEPLOY_DIR ${JBOSS_HOME}/standalone/deployments/
 
+# setup full standalone
+RUN mv $JBOSS_HOME/standalone/configuration/standalone-openshift.xml $JBOSS_HOME/standalone/configuration/standalone-openshift.xml.ORIGINAL
+
+COPY standalone-full-ha.xml $JBOSS_HOME/standalone/configuration/
+
+RUN mv $JBOSS_HOME/standalone/configuration/standalone-full-ha.xml $JBOSS_HOME/standalone/configuration/standalone-openshift.xml
+
 ENV DATAGRID_URL1 datagrid.url.1
 ENV DATAGRID_URL2 datagrid.url.2
 

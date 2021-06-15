@@ -11,7 +11,7 @@ function wait_for_server() {
 }
 
 echo "=> Starting WildFly server"
-$JBOSS_HOME/bin/standalone.sh -b=0.0.0.0 -c standalone.xml > /dev/null &
+$JBOSS_HOME/bin/standalone.sh -b=0.0.0.0 -c standalone-openshift.xml > /dev/null &
 
 echo "=> Waiting for the server to boot"
 wait_for_server
@@ -55,4 +55,4 @@ touch jboss.started
 fi
 
 echo "=> Start JBoss"
-$JBOSS_HOME/bin/standalone.sh -b=0.0.0.0 -c standalone.xml
+$JBOSS_HOME/bin/standalone.sh -b=0.0.0.0 -c standalone-openshift.xml
